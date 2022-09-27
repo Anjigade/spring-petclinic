@@ -2,6 +2,7 @@ pipeline {
     agent any
       stages {
         stage('giit') {
+            agent { label 'OPENJDK-11-DP' }
             steps {
                 git branch: 'REL_INT_2.0', url: 'https://github.com/Anjigade/spring-petclinic.git'
             }
