@@ -3,7 +3,7 @@ node ('OPENJDK-11-MVN')
 
    stage('SCM') {
       // git clone
-	  git 'https://github.com/Anjigade/spring-framework-petclinic.git'
+	  git branch: 'REL_INT_1.0', url: 'https://github.com/Anjigade/spring-petclinic.git'
    }
    
    stage ('build the packages') {
