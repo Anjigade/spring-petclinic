@@ -1,16 +1,17 @@
-node ('OPENJDK-11-MVN')
-{
-
-   stage('SCM') {
-      // git clone
-	  git branch: 'REL_INT_1.0', url: 'https://github.com/Anjigade/spring-petclinic.git'
-   }
-   
-   stage ('build the packages') {
-      // mvn package
-	  sh 'mvn package'
-   }
-      stage('Archive JUnit formatted test results') {
+pipeline {
+    agent any
+      stages {
+        stage('giit') {
+            steps {
+                git branch: 'REL_INT_2.0', url: 'https://github.com/Anjigade/spring-framework-petclinic.git'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('Archive JUnit formatted test results') {
             steps {
                 junit '**/surefire-reports/*.xml'
             }
@@ -20,6 +21,5 @@ node ('OPENJDK-11-MVN')
             archive '**/target/*.jar'
             }
         }
-   
-   
+    } 
 }
